@@ -1,0 +1,22 @@
+{
+	"geode": "4.2.0",
+	"gd": {
+		"win": "2.2074"
+	},
+	"id": "gmp.crazy_hax_pro",
+	"name": "CRaZy HaX PRO",
+	"version": "v2.0.0",
+	"developer": "GMP",
+	"description": "",
+    "dependencies": {
+        "geode.custom-keybinds": {
+            "version": ">=v1.7.1",
+            "importance": "required"
+        }
+	},
+	"resources": {
+		"files": [
+			"resources/*.ttf"
+		]
+	}
+}
