@@ -1,10 +1,11 @@
 {
 	"geode": "4.2.0",
 	"gd": {
-		"win": "2.2074"
+		"win": "2.2074",
+		"mac": "2.2074"
 	},
-	"id": "gmp.crazy_hax_pro",
-	"name": "CRaZy HaX PRO",
+	"id": "gmp.singlularity_menu",
+	"name": "SIngUlARiTy MEnU",
 	"version": "v2.0.0",
 	"developer": "GMP",
 	"description": "",
@@ -12,11 +13,31 @@
         "geode.custom-keybinds": {
             "version": ">=v1.7.1",
             "importance": "required"
+        },
+        "geode.node-ids": {
+            "version": ">=v1.7.1",
+            "importance": "required"
         }
+	},
+	"incompatibilities": {
+		"syzzi.click.between.frames": {
+			"version": ">=v1.2.9",
+			"importance": "conflicting"
+		}
 	},
 	"resources": {
 		"files": [
 			"resources/*.ttf"
 		]
+	},
+	"tags": [
+        "cheat",
+        "gameplay",
+        "utility"
+    ],
+	"links": {
+		"source": "https://github.com/GMDPLUTONIC/CRaZy-HaX-2.2",
+		"community": "https://discord.gg/ZbqefQYgV5",
+		"homepage": "https://crazy-hax-pro.pages.dev"
 	}
 }

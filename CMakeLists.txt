@@ -8,6 +8,7 @@ project(CRaZyHaXPRO VERSION 2.0.0)
 
 add_library(${PROJECT_NAME} SHARED
     src/main.cpp
+    # Add any extra C++ source files here
 )
 
 if (NOT DEFINED ENV{GEODE_SDK})
@@ -20,7 +21,6 @@ add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
 set(IMGUI_VERSION "v1.91.4")
 CPMAddPackage("gh:matcool/gd-imgui-cocos#8973953")
-
 target_link_libraries(${PROJECT_NAME} imgui-cocos)
 
 setup_geode_mod(${PROJECT_NAME})
