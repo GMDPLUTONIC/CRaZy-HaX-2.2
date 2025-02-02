@@ -1,5 +1,5 @@
-# PrezFul
-This is where she makes a mod.
+# Singularity Menu
+This Is Where I Make A BOMB.
 
 <img src="logo.png" width="150" alt="the mod's logo" />
 
