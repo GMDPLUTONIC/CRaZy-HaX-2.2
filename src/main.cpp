@@ -235,10 +235,14 @@ void draw() {
 		};
 		} else {
 			class $modify(IconHackManager, GameManager) {
-				return GameManager::isIconUnlocked(_id, _type);
-				return GameManager::isColorUnlocked(_id, _type);
+				bool isIconUnlocked(int _id, IconType _type) {
+					return GameManager::isIconUnlocked(_id, _type);
+				}
+				bool isColorUnlocked(int _id, UnlockType _type) {
+					return GameManager::isColorUnlocked(_id, _type);
+				}
 			};
-		}
+	}
 
 	if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
     ImGui::SetTooltip("Lets You Use Any Icon In The Game."); }
