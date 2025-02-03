@@ -231,14 +231,14 @@ void draw() {
 			bool isColorUnlocked(int _id, UnlockType _type) {
 					if (GameManager::isColorUnlocked(_id, _type)) return true;
 					return true;
-			};
+			}
+		};
 		} else {
 			class $modify(IconHackManager, GameManager) {
 				return GameManager::isIconUnlocked(_id, _type);
 				return GameManager::isColorUnlocked(_id, _type);
 			};
 		}
-	}
 
 	if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
     ImGui::SetTooltip("Lets You Use Any Icon In The Game."); }
