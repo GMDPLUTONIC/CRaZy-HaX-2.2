@@ -21,7 +21,7 @@
 
 using namespace geode::prelude;
 
-class $modify(MenuLayer){
+/*class $modify(MenuLayer){
     bool init() {
         if (!MenuLayer::init()) return false;
 
@@ -35,7 +35,7 @@ class $modify(MenuLayer){
             popup->show();
         }
 	}
-};
+};*/
 
 void setup() {
 
