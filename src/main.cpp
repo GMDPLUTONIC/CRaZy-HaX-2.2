@@ -221,7 +221,7 @@ void draw() {
 	ImGui::Begin("Cosmetic:", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
 	if(ImGui::Checkbox("Icon Hack", &iconHack)) {
-class $modify(GameManager) {
+class $modify(IconHackManager, GameManager) {
     bool isIconUnlocked(int _id, IconType _type) {
         if (!Mod::get()->setSavedValue("icon-hack", true)) {
             if (GameManager::isIconUnlocked(_id, _type)) return true;
@@ -241,13 +241,6 @@ class $modify(GameManager) {
         }
     }
 };
-
-    class $modify(UnlockIconsGSMHook, GameStatsManager) {
-
-        bool isItemUnlocked(UnlockType type, int key) {
-            if (GameStatsManager::isItemUnlocked(type, key)) return true;
-        }
-    };
 	}
 
 	if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
