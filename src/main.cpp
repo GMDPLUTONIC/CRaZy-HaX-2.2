@@ -221,27 +221,23 @@ void draw() {
 	ImGui::Begin("Cosmetic:", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
 	if(ImGui::Checkbox("Icon Hack", &iconHack)) {
-class $modify(IconHackManager, GameManager) {
-    bool isIconUnlocked(int _id, IconType _type) {
-        if (!Mod::get()->setSavedValue("icon-hack", true)) {
-            if (GameManager::isIconUnlocked(_id, _type)) return true;
-            if (_id <= 0) return false;
-            return true;
-        } else {
-            return GameManager::isIconUnlocked(_id, _type);
-        }
-    }
+		class $modify(IconHackManager, GameManager) {
+			bool isIconUnlocked(int _id, IconType _type) {
+					if (GameManager::isIconUnlocked(_id, _type)) return true;
+					if (_id <= 0) return false;
+					return true;
+			}
 
-    bool isColorUnlocked(int _id, UnlockType _type) {
-        if (!Mod::get()->setSavedValue("icon-hack", true)) {
-            if (GameManager::isColorUnlocked(_id, _type)) return true;
-            return true;
-        } else {
-            return GameManager::isColorUnlocked(_id, _type);
-        }
-    }
-};
-	}
+			bool isColorUnlocked(int _id, UnlockType _type) {
+					if (GameManager::isColorUnlocked(_id, _type)) return true;
+					return true;
+			};
+		} else {
+			class $modify(IconHackManager, GameManager) {
+				return GameManager::isIconUnlocked(_id, _type);
+				return GameManager::isColorUnlocked(_id, _type);
+			};
+		}
 
 	if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
     ImGui::SetTooltip("Lets You Use Any Icon In The Game."); }
