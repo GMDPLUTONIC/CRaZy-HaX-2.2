@@ -238,6 +238,7 @@ void draw() {
 				return GameManager::isColorUnlocked(_id, _type);
 			};
 		}
+	}
 
 	if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
     ImGui::SetTooltip("Lets You Use Any Icon In The Game."); }
