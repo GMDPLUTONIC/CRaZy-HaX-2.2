@@ -346,7 +346,7 @@ class $modify(IconHackManager, GameManager) {
 	ImGui::SetNextWindowSize(ImVec2(130, 125));
 	ImGui::Begin("Creator:", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
-	if(ImGui::Checkbox("Level Edit", &levelEdit)) {
+/*	if(ImGui::Checkbox("Level Edit", &levelEdit)) {
 
     class $modify(LevelEditUI, EditorUI) {
         void onSettings(CCObject* sender) {
@@ -381,7 +381,7 @@ class $modify(IconHackManager, GameManager) {
 	}
 	
 	if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
-    ImGui::SetTooltip("Allows You To Edit Any Level Through The PauseLayer."); }
+    ImGui::SetTooltip("Allows You To Edit Any Level Through The PauseLayer."); }*/
 
 	if(ImGui::Checkbox("Verify Hack", &verifyHack)) {
 
