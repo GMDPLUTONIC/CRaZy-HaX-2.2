@@ -1,23 +1,4 @@
-#include <imgui-cocos.hpp>
-#include <Geode/modify/MenuLayer.hpp>
-#include <iostream>
-#include "bools.h"
-#include <Geode/modify/GameManager.hpp>
-#include <Geode/modify/GameStatsManager.hpp>
-#include <geode.custom-keybinds/include/Keybinds.hpp>
-#include <Geode/modify/CCScheduler.hpp>
-#include <Geode/modify/FMODAudioEngine.hpp>
-#include <Geode/modify/PlayLayer.hpp>
-#include <Geode/modify/CCDrawNode.hpp>
-#include <Geode/modify/LevelInfoLayer.hpp>
-#include <Geode/modify/ShaderLayer.hpp>
-#include <Geode/modify/EditorPauseLayer.hpp>
-#include <Geode/modify/EditorUI.hpp>
-#include <Geode/modify/LevelTools.hpp>
-#include <Geode/modify/PauseLayer.hpp>
-#include <Geode/modify/EditLevelLayer.hpp>
-#include <Geode/modify/SliderTouchLogic.hpp>
-#include <Geode/modify/LevelEditorLayer.hpp>
+#include "includes.h"
 
 using namespace geode::prelude;
 
@@ -190,6 +171,7 @@ void draw() {
 	}
 
 	if(ImGui::Checkbox("No Slider Limit", &sliderLimit)) {
+		if (!Mod::get()->setSavedValue("no-slider-limit", true)) {
 
 		class $modify(NoSliderLimitLogic, SliderTouchLogic) {
 
@@ -211,7 +193,7 @@ void draw() {
 					slider->updateBar();
 			}
 		};
-	}
+	} }
 
 	ImGui::End();
 
@@ -220,13 +202,33 @@ void draw() {
 	ImGui::Begin("Cosmetic:", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
 	if(ImGui::Checkbox("Icon Hack", &iconHack)) {
-		class $modify(IconHackManager, GameStatsManager) {
-			bool isItemUnlocked(UnlockType type, int key) {
-			if (GameStatsManager::isItemUnlocked(type, key)) return true;
-			}
-		};
-	} else {
+class $modify(GameManager) {
+    bool isIconUnlocked(int _id, IconType _type) {
+        if (!Mod::get()->setSavedValue("icon-hack", true)) {
+            if (GameManager::isIconUnlocked(_id, _type)) return true;
+            if (_id <= 0) return false;
+            return true;
+        } else {
+            return GameManager::isIconUnlocked(_id, _type);
+        }
+    }
 
+    bool isColorUnlocked(int _id, UnlockType _type) {
+        if (!Mod::get()->setSavedValue("icon-hack", true)) {
+            if (GameManager::isColorUnlocked(_id, _type)) return true;
+            return true;
+        } else {
+            return GameManager::isColorUnlocked(_id, _type);
+        }
+    }
+};
+
+    class $modify(UnlockIconsGSMHook, GameStatsManager) {
+
+        bool isItemUnlocked(UnlockType type, int key) {
+            if (GameStatsManager::isItemUnlocked(type, key)) return true;
+        }
+    };
 	}
 
 	if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
