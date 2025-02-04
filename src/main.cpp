@@ -177,21 +177,19 @@ void draw() {
 	ImGui::Text("Speedhack");
     if(ImGui::InputFloat((""), &speedhack, 1.0f, 10.0f, "%.5f")) {
 	    class $modify(SpeedhackScheduler, cocos2d::CCScheduler) {
-			void update(float deltatime) override {
+			void update(float gamespeed) override {
 
 				if (speedhack <= 0)
 					speedhack = 1.f;
 
-				deltatime *= speedhack;
+				gamespeed *= speedhack;
 
-				CCScheduler::update(deltatime);
+				CCScheduler::update(gamespeed);
 			}
     	};
 	}
 
 	if(ImGui::Checkbox("No Slider Limit", &sliderLimit)) {
-		if (!Mod::get()->setSavedValue("no-slider-limit", true)) {
-
 		class $modify(NoSliderLimitLogic, SliderTouchLogic) {
 
 			void ccTouchMoved(cocos2d::CCTouch* touch, cocos2d::CCEvent* event) override {
@@ -212,7 +210,7 @@ void draw() {
 					slider->updateBar();
 			}
 		};
-	} }
+	} 
 
 	ImGui::End();
 
@@ -233,15 +231,15 @@ void draw() {
 					return true;
 			}
 		};
-		} else {
-			class $modify(IconHackManager, GameManager) {
-				bool isIconUnlocked(int _id, IconType _type) {
-					return GameManager::isIconUnlocked(_id, _type);
-				}
-				bool isColorUnlocked(int _id, UnlockType _type) {
-					return GameManager::isColorUnlocked(_id, _type);
-				}
-			};
+	} else {
+		class $modify(IconHackManager, GameManager) {
+			bool isIconUnlocked(int _id, IconType _type) {
+				return GameManager::isIconUnlocked(_id, _type);
+			}
+			bool isColorUnlocked(int _id, UnlockType _type) {
+				return GameManager::isColorUnlocked(_id, _type);
+			}
+		};
 	}
 
 	if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
@@ -297,17 +295,19 @@ void draw() {
 	ImGui::Begin("Level:", nullptr, ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse);
 
 	if(ImGui::Checkbox("Noclip", &noclip)) {
+		if(noclip) {
 		class $modify(NoclipLayer, PlayLayer) {
-			void destroyPlayer(PlayerObject* player, GameObject* object) override {
-				if (object == m_anticheatSpike) {
-					PlayLayer::destroyPlayer(player, object);
-					return;
-				}
+			void destroyPlayer(PlayerObject * player, GameObject * p1) {
 			}
 		};
 	} else {
-	
+		class $modify(NoclipLayer, PlayLayer) {
+			void destroyPlayer(PlayerObject * player, GameObject * p1) {
+				PlayLayer::destroyPlayer(player, p1);
+			}
+		};
 	}
+}	
 
 	if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled)) {
     ImGui::SetTooltip("Makes The Player Invincible."); }
